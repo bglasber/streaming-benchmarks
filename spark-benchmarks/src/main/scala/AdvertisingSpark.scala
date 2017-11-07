@@ -110,15 +110,14 @@ object KafkaRedisAdvertisingStream {
   }
 
   def joinHosts(hosts: Seq[String], port: String): String = {
-    val joined = new StringBuilder();
-    hosts.foreach({
+    val joined = new StringBuilder()
+    for (host <- hosts) {
       if (!joined.isEmpty) {
-        joined.append(",");
+        joined.append(",")
       }
-
-      joined.append(_).append(":").append(port);
-    })
-    return joined.toString();
+      joined.append(host).append(":").append(port)
+    }
+    return joined.toString()
   }
 
   def parseJson(jsonString: String): Array[String] = {
